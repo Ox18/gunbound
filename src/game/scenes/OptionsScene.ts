@@ -5,5 +5,6 @@ export class OptionsScene extends Scene {
 
   update(dt: number): void {
     // console.log("Options scene updating...", dt);
+    console.log("Options scene updating...", dt);
   }
 }
