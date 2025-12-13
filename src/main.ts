@@ -1,18 +1,27 @@
 import * as PIXI from "pixi.js";
-import { BuddyButton } from "./ui/buttons/BuddyButton";
+import { SceneManager } from "./core/SceneManager";
+import { LobbyScene } from "./game/scenes/LobbyScene";
 
 (async () => {
   const app = new PIXI.Application();
   await app.init({
-    width: 400,
-    height: 300,
+    width: 1000,
+    height: 900,
     background: "#1099bb",
   });
 
   document.body.appendChild(app.canvas);
 
-  const buddyButton = new BuddyButton();
-  await buddyButton.load();
+  // SceneManager.init(app);
+  // await SceneManager.change(new MainMenuScene());
 
-  app.stage.addChild(buddyButton.animatedSprite);
+  // app.ticker.add((ticker) => {
+  //   SceneManager.update(ticker.deltaTime);
+  // });
+  SceneManager.init(app);
+  await SceneManager.change(new LobbyScene());
+
+  app.ticker.add((ticker) => {
+    SceneManager.update(ticker.deltaTime);
+  });
 })();
