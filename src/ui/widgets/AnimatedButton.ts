@@ -6,7 +6,28 @@ interface AnimatedButtonConfig {
   frame_h: number;
   cols: number;
   total: number;
-  animation_points: unknown;
+  animation: {
+    normal?: {
+      frames: number[];
+      speed: number;
+      loop: boolean;
+    };
+    hover?: {
+      frames: number[];
+      speed: number;
+      loop: boolean;
+    };
+    clicked?: {
+      frames: number[];
+      speed: number;
+      loop: boolean;
+    };
+    disabled?: {
+      frames: number[];
+      speed: number;
+      loop: boolean;
+    };
+  };
 }
 
 export class AnimatedButton {
@@ -16,7 +37,12 @@ export class AnimatedButton {
     frame_h: 0,
     cols: 0,
     total: 0,
-    animation_points: {},
+    animation: {
+      normal: { frames: [], speed: 0, loop: false },
+      hover: { frames: [], speed: 0, loop: false },
+      clicked: { frames: [], speed: 0, loop: false },
+      disabled: { frames: [], speed: 0, loop: false },
+    },
   };
   frames_textures: PIXI.Texture[] = [];
   frames: PIXI.Texture[] = [];
@@ -60,20 +86,60 @@ export class AnimatedButton {
     this.animatedSprite.interactive = true;
     this.animatedSprite.cursor = "pointer";
 
-    this.play([this.frames[19]], 0.001, false);
+    // this.play([this.frames[19]], 0.001, false);
 
-    this.animatedSprite.on("pointerover", () =>
-      this.play(this.frames.slice(0, 20), 0.2)
-    );
-    this.animatedSprite.on("pointerout", () =>
-      this.play([this.frames[19]], 0.001, false)
-    );
-    this.animatedSprite.on("pointerdown", () =>
-      this.play(this.frames.slice(18, 57), 1 / 28, false)
-    );
+    // this.animatedSprite.on("pointerover", () =>
+    //   this.play(this.frames.slice(0, 20), 0.2)
+    // );
+    // this.animatedSprite.on("pointerout", () =>
+    //   this.play([this.frames[19]], 0.001, false)
+    // );
+    // this.animatedSprite.on("pointerdown", () =>
+    //   this.play(this.frames.slice(18, 57), 1 / 28, false)
+    // );
+
+    if (this.config.animation.normal) {
+      this.play(
+        this.config.animation.normal!.frames.map((i) => this.frames[i]),
+        this.config.animation.normal!.speed,
+        this.config.animation.normal!.loop
+      );
+    }
+
+    if (this.config.animation.hover) {
+      this.animatedSprite.on("pointerover", () =>
+        this.play(
+          this.config.animation.hover!.frames.map((i) => this.frames[i]),
+          this.config.animation.hover!.speed,
+          this.config.animation.hover!.loop
+        )
+      );
+    }
+
+    if (this.config.animation.clicked) {
+      this.animatedSprite.on("pointerdown", () =>
+        this.play(
+          this.config.animation.clicked!.frames.map((i) => this.frames[i]),
+          this.config.animation.clicked!.speed,
+          this.config.animation.clicked!.loop
+        )
+      );
+    }
+
+    if (this.config.animation.disabled) {
+      this.animatedSprite.on("rightclick", () =>
+        this.play(
+          this.config.animation.disabled!.frames.map((i) => this.frames[i]),
+          this.config.animation.disabled!.speed,
+          this.config.animation.disabled!.loop
+        )
+      );
+    }
+
+    return this;
   }
 
-  play(textures: PIXI.Texture[], speed: number, loop = true) {
+  private play(textures: PIXI.Texture[], speed: number, loop = true) {
     this.animatedSprite.textures = textures;
     this.animatedSprite.animationSpeed = speed;
     this.animatedSprite.loop = loop;
