@@ -1,11 +1,11 @@
 import * as PIXI from "pixi.js";
 import { SceneManager } from "./core/SceneManager";
-import { LobbyScene } from "./game/scenes/LobbyScene";
+import { GameListScene } from "./game/scenes/GameListScene";
 
 (async () => {
   const app = new PIXI.Application();
   await app.init({
-    width: 1000,
+    width: 1200,
     height: 900,
     background: "#1099bb",
   });
@@ -19,7 +19,7 @@ import { LobbyScene } from "./game/scenes/LobbyScene";
   //   SceneManager.update(ticker.deltaTime);
   // });
   SceneManager.init(app);
-  await SceneManager.change(new LobbyScene());
+  await SceneManager.change(new GameListScene());
 
   app.ticker.add((ticker) => {
     SceneManager.update(ticker.deltaTime);

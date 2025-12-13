@@ -2,11 +2,23 @@ import { Scene } from "../../core/Scene";
 import { SceneManager } from "../../core/SceneManager";
 import { BuddyButton } from "../../ui/buttons/BuddyButton";
 import { RoomScene } from "./RoomScene";
+import * as PIXI from "pixi.js";
 
-export class LobbyScene extends Scene {
+export class GameListScene extends Scene {
   private button!: BuddyButton;
 
   async load() {
+    const texture = await PIXI.Assets.load(
+      "/assets/interface/InGame/Scene/GameList/Background.png"
+    );
+
+    const background = new PIXI.Sprite(texture);
+
+    background.width = 1200;
+    background.height = 900;
+
+    this.container.addChild(background);
+
     this.button = new BuddyButton();
     await this.button.load();
 
