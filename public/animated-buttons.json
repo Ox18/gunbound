@@ -1,0 +1,39 @@
+{
+  "frames": {
+    "Avatar": {
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 1556,
+        "h": 469
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 1,
+        "y": 3,
+        "w": 1556,
+        "h": 469
+      },
+      "sourceSize": {
+        "w": 1560,
+        "h": 474
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    }
+  },
+  "meta": {
+    "app": "http://free-tex-packer.com",
+    "version": "0.6.7",
+    "image": "animated-buttons.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 1556,
+      "h": 469
+    },
+    "scale": 1
+  }
+}
