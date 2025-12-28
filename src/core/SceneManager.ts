@@ -16,7 +16,6 @@ export class SceneManager {
     }
 
     this.currentScene = scene;
-    await scene.load();
 
     this.app.stage.addChild(scene.container);
   }

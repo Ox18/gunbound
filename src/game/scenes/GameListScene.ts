@@ -31,12 +31,7 @@ export class GameListScene extends Scene {
     //             layerDepth: DepthParameter.Background,
     //             shouldCopyAsset: false);
 
-    const Background = new Sprite('GameListBackground', Vector2.zero, 0, false);
 
-    console.log(Background);
-    console.log(SceneManager.currentScene)
-
-    Background.Draw();
   }
 
   update(dt: number) {

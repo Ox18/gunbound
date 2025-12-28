@@ -1,3 +1,4 @@
+import { Application } from '../../Application';
 import { Queue } from '../../utils/Queue';
 import { GameScene } from './GameScene';
 import { GameList } from './Menu/GameList';
@@ -67,11 +68,32 @@ export class SceneHandler {
 
     this.elapsedTime = 0;
     this.transitionWaitTime = transitionWaitTime;
+
+    const nextScene = this.BuildNextScene(sceneType, nextSceneParameter);
+
+    if (this.CurrentScene) {
+      Application.Instance.app.stage.removeChild(this.CurrentScene.Container);
+      this.CurrentScene.Container.destroy();
+    }
+
+    if (nextScene) {
+      console.log('Requesting scene change to:', sceneType);
+      console.log('Next scene built:', nextScene);
+      this.CurrentScene = nextScene;
+      Application.Instance.app.stage.addChild(nextScene.Container);
+      nextScene.Draw()
+    }
+
+    
   }
 
   private BuildNextScene(sceneType: SceneType, SceneParam: object): GameScene | null {
     if (sceneType === SceneType.GameList) return new GameList();
 
     return null;
+  }
+
+  public Draw(): void {
+    this.CurrentScene.Draw();
   }
 }

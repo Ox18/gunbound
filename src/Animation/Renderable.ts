@@ -1,4 +1,4 @@
-import { SceneManager } from '../core/SceneManager';
+import { SceneHandler } from '../Level/Scene/SceneHandler';
 import { Color } from '../utils/Color';
 import { Vector2 } from '../utils/Vector2';
 import * as Pixi from 'pixi.js';
@@ -24,6 +24,10 @@ export abstract class Renderable {
 
   public Draw(): void {
     const sprite = new Pixi.Sprite(this.Texture2D);
-    SceneManager.currentScene?.container.addChild(sprite);
+    sprite.width = this.SpriteWidth;
+    sprite.height = this.SpriteHeight;
+    console.log('Drawing sprite with texture:', this.Texture2DPath);
+    console.log(SceneHandler.Instance)
+    SceneHandler.Instance.CurrentScene.Container.addChild(sprite);
   }
 }

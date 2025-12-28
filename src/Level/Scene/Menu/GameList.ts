@@ -11,6 +11,7 @@ export class GameList extends GameScene {
 
     this.animatedButtonList = new Array<AnimatedButton>();
 
-    this.Background = new Sprite('Interface/InGame/Scene/GameList/Background', new Vector2(0, 0), 0, false);
+    this.Background = new Sprite('GameListBackground', Vector2.zero, 0, false);
+
   }
 }

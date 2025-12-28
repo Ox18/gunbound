@@ -18,9 +18,14 @@ export class Sprite extends Renderable {
       this.Texture2D = AssetHandler.Instance.RequestTexture(texture2DPath);
     }
 
-    this.SpriteWidth = this.Texture2D.width;
-    this.SpriteHeight = this.Texture2D.height;
-    this.Pivot = new Vector2(this.SpriteWidth / 2, this.SpriteHeight / 2);
+    try {
+      this.SpriteWidth = this.Texture2D.width;
+      this.SpriteHeight = this.Texture2D.height;
+    } catch (error) {
+      console.error('Error loading texture for Sprite:', error);
+      console.log('Texture2DPath:', texture2DPath);
+    }
+    // this.Pivot = new Vector2(this.SpriteWidth / 2, this.SpriteHeight / 2);
   }
 
   // constructor(textureWidth: number, textureHeight: number, position: Vector2 = Vector2.one, layerDepth: number = 0) {
