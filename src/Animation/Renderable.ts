@@ -26,8 +26,6 @@ export abstract class Renderable {
     const sprite = new Pixi.Sprite(this.Texture2D);
     sprite.width = this.SpriteWidth;
     sprite.height = this.SpriteHeight;
-    console.log('Drawing sprite with texture:', this.Texture2DPath);
-    console.log(SceneHandler.Instance)
     SceneHandler.Instance.CurrentScene.Container.addChild(sprite);
   }
 }

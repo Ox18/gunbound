@@ -34,4 +34,6 @@ export class Vector2 {
   static one: Vector2 = new Vector2(1, 1);
 
   static zero: Vector2 = new Vector2(0, 0);
+
+  static default: Vector2 = new Vector2(0, 0);
 }

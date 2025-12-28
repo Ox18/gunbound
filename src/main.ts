@@ -12,21 +12,10 @@ import { Application } from './Application';
   });
   document.body.appendChild(Application.Instance.app.canvas);
 
+  // Application.Instance.app.canvas.style.cursor = 'none';
+  // document.body.style.cursor = 'none';
+
   const game = new Game();
 
   game.Run();
-
-
-  // SceneManager.init(app);
-  // await SceneManager.change(new MainMenuScene());
-
-  // app.ticker.add((ticker) => {
-  //   SceneManager.update(ticker.deltaTime);
-  // });
-  // SceneManager.init(app);
-  // await SceneManager.change(new GameListScene());
-
-  // app.ticker.add(ticker => {
-  //   SceneManager.update(ticker.deltaTime);
-  // });
 })();

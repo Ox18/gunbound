@@ -1,4 +1,5 @@
 import { Sprite } from '../../Animation/Sprite';
+import { Cursor } from '../../Interface/Cursor';
 import { Vector2 } from '../../utils/Vector2';
 import { SceneHandler } from './SceneHandler';
 import * as PIXI from "pixi.js";
@@ -19,9 +20,8 @@ export abstract class GameScene {
   }
 
   public Draw(): void {
-    // Override in derived classes
+    Cursor.Instance.Draw();
     this.Background.Draw();
-    console.log('Drawing GameScene background');
   }
 
   public EndDraw(): void {

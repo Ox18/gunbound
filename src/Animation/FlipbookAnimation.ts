@@ -43,7 +43,7 @@ export abstract class FlipbookAnimation {
       case AnimationType.Cycle:
         return new FlipbookAnimationCycle(FlipbookInstance);
       default:
-        throw new Error('Unsupported Animation Type');
+        return null!;
     }
   }
 }

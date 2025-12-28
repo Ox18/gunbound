@@ -13,10 +13,19 @@ export class Flipbook extends Renderable {
 
   CurrentAnimationInstance!: AnimationInstance;
 
-  constructor(position: Vector2, pivot: Vector2, spriteWidth: number, spriteHeight: number, texture2DPath: string, animationCycle: Array<AnimationInstance>, layerDepth: number, rotation: number = 0) {
+  // constructor(position: Vector2, pivot: Vector2, spriteWidth: number, spriteHeight: number, texture2DPath: string, animationCycle: Array<AnimationInstance>, layerDepth: number, rotation: number = 0) {
+  //   super();
+
+  //   Flipbook.CreateFlipbook(this, position, pivot, spriteWidth, spriteHeight, texture2DPath, animationCycle, layerDepth, rotation);
+  // }
+
+  constructor(position: Vector2, pivot: Vector2, spriteWidth: number, spriteHeight: number, texture2DPath: string, animationInstance: AnimationInstance, layerDepth: number, rotation: number = 0) {
     super();
 
-    Flipbook.CreateFlipbook(this, position, pivot, spriteWidth, spriteHeight, texture2DPath, animationCycle, layerDepth, rotation);
+    const animationList = new Array<AnimationInstance>();
+    animationList.push(animationInstance);
+
+    Flipbook.CreateFlipbook(this, position, pivot, spriteWidth, spriteHeight, texture2DPath, animationList, layerDepth, rotation);
   }
 
   static CreateFlipbook(flipbook: Flipbook, position: Vector2, pivot: Vector2, spriteWidth: number, spriteHeight: number, texture2DPath: string, animationCycle: Array<AnimationInstance>, layerDepth: number, rotation: number = 0): void {
@@ -43,6 +52,7 @@ export class Flipbook extends Renderable {
     this.FlipbookAnimationList = new Array<FlipbookAnimation>();
 
     for (const animationInstance of this.AnimationCycle) {
+      console.log((animationInstance));
       this.FlipbookAnimationList.push(FlipbookAnimation.GetInstance(animationInstance));
     }
   }
