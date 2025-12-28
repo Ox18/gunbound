@@ -5,6 +5,7 @@ import { GameListScene } from "./game/scenes/GameListScene";
 (async () => {
   const app = new PIXI.Application();
   await PIXI.Assets.load("animated-buttons.json")
+  await PIXI.Assets.load("game-list-background.json");
   await app.init({
     width: 800,
     height: 600,

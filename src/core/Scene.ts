@@ -1,6 +1,6 @@
 import * as PIXI from "pixi.js";
 
-export abstract class Scene {
+export abstract class Scene { 
   container: PIXI.Container = new PIXI.Container();
 
   abstract load(): Promise<void>;

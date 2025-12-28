@@ -3,7 +3,7 @@ import { Scene } from "./Scene";
 
 export class SceneManager {
   private static app: PIXI.Application;
-  private static currentScene: Scene | null = null;
+  static currentScene: Scene | null = null;
 
   static init(app: PIXI.Application) {
     this.app = app;

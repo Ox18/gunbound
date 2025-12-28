@@ -1,5 +1,7 @@
+import { SceneManager } from '../core/SceneManager';
 import { Color } from '../utils/Color';
 import { Vector2 } from '../utils/Vector2';
+import * as Pixi from 'pixi.js';
 
 export abstract class Renderable {
   Position!: Vector2;
@@ -12,9 +14,16 @@ export abstract class Renderable {
   Scale!: Vector2;
   Color!: Color;
   LayerDepth!: number;
+  Texture2D!: Pixi.Texture;
+
 
   constructor() {
     this.Scale = Vector2.one;
     this.Color = Color.White;
+  }
+
+  public Draw(): void {
+    const sprite = new Pixi.Sprite(this.Texture2D);
+    SceneManager.currentScene?.container.addChild(sprite);
   }
 }
